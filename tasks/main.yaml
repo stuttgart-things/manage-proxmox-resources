@@ -1,0 +1,3 @@
+---
+- name: Get proxmox ticket for authentication
+  ansible.builtin.include_tasks: ticket.yaml

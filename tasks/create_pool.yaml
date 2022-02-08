@@ -1,0 +1,12 @@
+---
+- name: Create pve vm pool
+  ansible.builtin.uri:
+    url: "{{ api_url }}/pools"
+    method: POST
+    body_format: form-urlencoded
+    body:
+      poolid: "{{ vm_pool }}"
+    status_code: [200,500]
+    headers:
+      Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
+      CSRFPreventionToken: "{{ pve_api_ticket.json.data.CSRFPreventionToken }}"

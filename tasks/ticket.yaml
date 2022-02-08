@@ -1,0 +1,11 @@
+---
+- name: Get proxmox ticket
+  ansible.builtin.uri:
+    url: "{{ api_url }}/access/ticket"
+    method: POST
+    body_format: form-urlencoded
+    body:
+      username: "{{ api_user }}"
+      password: "{{ api_password }}"
+    status_code: [200,500]
+  register: pve_api_ticket
