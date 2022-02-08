@@ -1,3 +1,10 @@
 ---
 - name: Get proxmox ticket for authentication
   ansible.builtin.include_tasks: ticket.yaml
+
+- name: Create VM pool/folder
+  ansible.builtin.include_tasks: create_pool.yaml
+  when: vm_pool is defined
+
+- name: Delete template/vm
+  ansible.builtin.include_tasks: delete_vm.yaml
