@@ -1,3 +1,4 @@
-# manage-proxmox-resources
+stuttgart-things/manage-proxmox-resources (wip)
+=========================================
 
-This ansible role create/update/delete pve resources
+This Ansible role can manage proxmox resources via api calls. 
