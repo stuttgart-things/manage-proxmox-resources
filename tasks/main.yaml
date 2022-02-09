@@ -4,18 +4,18 @@
 
 - name: Create VM pool/folder
   ansible.builtin.include_tasks: create_pool.yaml
-  when: vm_pool is defined
+  when: pve_pools is defined
   with_items:
     - "{{ pve_pools }}"
 
 - name: Delete template/vm
   ansible.builtin.include_tasks: delete_vm.yaml
-  when: vm_delete is defined
+  when: pve_delete_vms is defined
   with_items:
     - "{{ pve_delete_vms }}"
 
 - name: Rename template/vm
   ansible.builtin.include_tasks: rename_vm.yaml
-  when: vm_rename is defined
+  when: pve_rename_vms is defined
   with_items:
     - "{{ pve_rename_vms }}"
