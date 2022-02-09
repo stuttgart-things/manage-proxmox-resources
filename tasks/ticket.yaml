@@ -7,5 +7,5 @@
     body:
       username: "{{ pve_api_user }}"
       password: "{{ pve_api_password }}"
-    status_code: [200,500]
+    status_code: 200
   register: pve_api_ticket
