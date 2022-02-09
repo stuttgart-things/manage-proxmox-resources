@@ -14,7 +14,7 @@
   ansible.builtin.set_fact:
     pve_vmid: "{{ pve_api_qemu_return.json | json_query(jmesquery) }}"
   vars:
-    jmesquery: "data[?(@.name=='{{ current_vm_name }}')].vmid"
+    jmesquery: "data[?(@.name=='{{ item.current_vm_name }}')].vmid"
 
 - name: Rename VM
   ansible.builtin.uri:
@@ -22,7 +22,7 @@
     method: POST
     body_format: form-urlencoded
     body:
-      name: "{{ expected_vm_name }}"
+      name: "{{ item.expected_vm_name }}"
     status_code: [200,500]
     headers:
       Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
