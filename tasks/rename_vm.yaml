@@ -2,7 +2,7 @@
 - name: Get proxmox qemu vm list
   ansible.builtin.uri:
     validate_certs: no
-    url: "{{ pve_server }}/api2/json/nodes/{{ host }}/qemu"
+    url: "{{ pve_server }}/api2/json/nodes/{{ item.node }}/qemu"
     method: GET
     status_code: 200
     headers:
@@ -14,15 +14,15 @@
   ansible.builtin.set_fact:
     pve_vmid: "{{ pve_api_qemu_return.json | json_query(jmesquery) }}"
   vars:
-    jmesquery: "data[?(@.name=='{{ packer_vm_template_name }}')].vmid"
+    jmesquery: "data[?(@.name=='{{ current_vm_name }}')].vmid"
 
 - name: Rename VM
   ansible.builtin.uri:
-    url: "{{ pve_server }}/api2/json/nodes/{{ host }}/qemu/{{ pve_vmid[0] }}/config"
+    url: "{{ pve_server }}/api2/json/nodes/{{ item.node }}/qemu/{{ pve_vmid[0] }}/config"
     method: POST
     body_format: form-urlencoded
     body:
-      name: "{{ new_vm_name }}"
+      name: "{{ expected_vm_name }}"
     status_code: [200,500]
     headers:
       Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
