@@ -34,13 +34,102 @@ ansible-playbook playbook.yml
 - hosts: localhost
   vars:
     pve_cluster_url: "https://sthings-pve1.labul.sva.de:8006"
-    api_user:  "terraform@pve"
-    api_password: "secret"
+    pve_api_user:  "terraform@pve"
+    pve_api_password: "secret"
 
     pve_pools :
-      - name: testpool
+      - name: pool1
+      - name: pool2
 
   roles:
     - manage-proxmox-resources
 ```
 </details>
+
+<details><summary>Delete VM (click here)</summary>
+
+### Ansible command:
+```
+ansible-playbook playbook.yml
+```
+
+### Playbook: playbook.yml
+```
+---
+- hosts: localhost
+  vars:
+    pve_cluster_url: "https://sthings-pve1.labul.sva.de:8006"
+    pve_api_user:  "terraform@pve"
+    pve_api_password: "secret"
+
+    pve_delete_vms:
+      - name: badvm1
+        node: sthings-pve1
+      - name: badvm2
+        node: sthings-pve1
+      - name: badvm3
+        node: sthings-pve1
+
+  roles:
+    - manage-proxmox-resources
+```
+</details>
+
+<details><summary>Rename VM or VM template (click here)</summary>
+
+### Ansible command:
+```
+ansible-playbook playbook.yml
+```
+
+### Playbook: playbook.yml
+```
+---
+- hosts: localhost
+  vars:
+    pve_cluster_url: "https://sthings-pve1.labul.sva.de:8006"
+    pve_api_user:  "terraform@pve"
+    pve_api_password: "secret"
+
+    pve_rename_vms:
+      - current_vm_name: vm1
+        expected_vm_name: myvm
+        node: sthings-pve1
+      - current_vm_name: vm2
+        expected_vm_name: mygoodvm
+        node: sthings-pve1
+      - current_vm_name: vm3
+        expected_vm_name: mybestvm
+        node: sthings-pve1
+
+  roles:
+    - manage-proxmox-resources
+```
+</details>
+
+## Requirements and Dependencies:
+- Ubuntu 20.04
+- Fedora 34
+- CentOS 8
+- CentOS 7
+
+### Features:
+- Create vm pool
+- Remove vm
+- Rename vm/template
+
+## Version:
+```
+DATE            WHO            WHAT
+2020-10-13      Marcel Zapf    Init
+```
+
+License
+-------
+
+BSD
+
+Author Information
+------------------
+
+Marcel Zapf; 02/2022; SVA GmbH
