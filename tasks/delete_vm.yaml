@@ -2,7 +2,7 @@
 - name: Get proxmox qemu vm list
   ansible.builtin.uri:
     validate_certs: no
-    url: "{{ pve_server }}/api2/json/nodes/{{ item.node }}/qemu"
+    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ item.node }}/qemu"
     method: GET
     status_code: 200
     headers:
@@ -19,7 +19,7 @@
 - name: Delete vm or template (if exists)
   ansible.builtin.uri:
     validate_certs: no
-    url: "{{ pve_server }}/api2/json/nodes/{{ item.node }}/qemu/{{ pve_vmid[0] }}"
+    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ item.node }}/qemu/{{ pve_vmid[0] }}"
     method: DELETE
     status_code: [200,500]
     headers:
