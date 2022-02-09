@@ -5,7 +5,7 @@
     method: POST
     body_format: form-urlencoded
     body:
-      username: "{{ api_user }}"
-      password: "{{ api_password }}"
+      username: "{{ pve_api_user }}"
+      password: "{{ pve_api_password }}"
     status_code: [200,500]
   register: pve_api_ticket
