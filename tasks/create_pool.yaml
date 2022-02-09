@@ -1,7 +1,7 @@
 ---
 - name: Create pve vm pool
   ansible.builtin.uri:
-    url: "{{ api_url }}/pools"
+    url: "{{ pve_server }}/pools"
     method: POST
     body_format: form-urlencoded
     body:

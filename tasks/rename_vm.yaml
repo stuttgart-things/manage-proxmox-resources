@@ -1,0 +1,32 @@
+---
+- name: Get proxmox qemu vm list
+  ansible.builtin.uri:
+    validate_certs: no
+    url: "{{ pve_server }}api2/json/nodes/{{ host }}/qemu"
+    method: GET
+    status_code: 200
+    headers:
+      Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
+      CSRFPreventionToken: "{{ pve_api_ticket.json.data.CSRFPreventionToken }}"
+  register: pve_api_qemu_return
+
+- name: Search for vmid in proxmox qemu vm list
+  ansible.builtin.set_fact:
+    pve_vmid: "{{ pve_api_qemu_return.json | json_query(jmesquery) }}"
+  vars:
+    jmesquery: "data[?(@.name=='{{ packer_vm_template_name }}')].vmid"
+
+- name: Rename VM
+  ansible.builtin.uri:
+    url: "{{ pve_server }}/api2/json/nodes/{{ host }}/qemu/{{ pve_vmid[0] }}/config"
+    method: POST
+    body_format: form-urlencoded
+    body:
+      name: "{{ new_vm_name }}"
+    status_code: [200,500]
+    headers:
+      Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
+      CSRFPreventionToken: "{{ pve_api_ticket.json.data.CSRFPreventionToken }}"
+
+
+https://sthings-pve1.labul.sva.de:8006/api2/json/nodes/sthings-pve1/qemu/121/config
