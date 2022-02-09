@@ -27,6 +27,3 @@
     headers:
       Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
       CSRFPreventionToken: "{{ pve_api_ticket.json.data.CSRFPreventionToken }}"
-
-
-https://sthings-pve1.labul.sva.de:8006/api2/json/nodes/sthings-pve1/qemu/121/config
