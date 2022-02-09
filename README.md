@@ -43,3 +43,4 @@ ansible-playbook playbook.yml
   roles:
     - manage-proxmox-resources
 ```
+</details>
