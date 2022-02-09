@@ -8,3 +8,8 @@
 
 - name: Delete template/vm
   ansible.builtin.include_tasks: delete_vm.yaml
+  when: vm_delete is defined
+
+- name: Rename template/vm
+  ansible.builtin.include_tasks: rename_vm.yaml
+  when: vm_rename is defined
