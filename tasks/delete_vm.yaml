@@ -20,7 +20,7 @@
   ansible.builtin.uri:
     validate_certs: no
     url: "{{ pve_server }}/api2/json/nodes/{{ item.node }}/qemu/{{ pve_vmid[0] }}"
-    method: GET
+    method: DELETE
     status_code: [200,500]
     headers:
       Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
