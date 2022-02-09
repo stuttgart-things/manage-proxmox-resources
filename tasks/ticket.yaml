@@ -1,7 +1,7 @@
 ---
 - name: Get proxmox ticket
   ansible.builtin.uri:
-    url: "{{ api_url }}/access/ticket"
+    url: "{{ pve_server }}/api2/json/access/ticket"
     method: POST
     body_format: form-urlencoded
     body:
