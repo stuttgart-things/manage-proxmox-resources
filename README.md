@@ -75,7 +75,7 @@ ansible-playbook playbook.yml
 ```
 </details>
 
-<details><summary>Rename VM or VM template (click here)</summary>
+<details><summary>Bulk Rename VM or VM template (click here)</summary>
 
 ### Ansible command:
 ```
@@ -101,6 +101,32 @@ ansible-playbook playbook.yml
       - current_vm_name: vm3
         expected_vm_name: mybestvm
         node: sthings-pve1
+
+  roles:
+    - manage-proxmox-resources
+```
+</details>
+
+<details><summary>Single Rename VM or VM template (click here)</summary>
+
+### Ansible command:
+```
+ansible-playbook playbook.yml
+```
+
+### Playbook: playbook.yml
+```
+---
+- hosts: localhost
+  vars:
+    pve_cluster_url: "https://sthings-pve1.labul.sva.de:8006"
+    pve_api_user:  "terraform@pve"
+    pve_api_password: "secret"
+    pve_node: sthings-pve1
+
+    pve_current_vm_name: vm1
+    pve_expected_vm_name: myvm
+
 
   roles:
     - manage-proxmox-resources
