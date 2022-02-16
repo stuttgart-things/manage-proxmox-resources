@@ -91,7 +91,7 @@ ansible-playbook playbook.yml
     pve_api_user:  "terraform@pve"
     pve_api_password: "secret"
 
-    pve_rename_vms:
+    pve_bulk_rename_vms:
       - current_vm_name: vm1
         expected_vm_name: myvm
         node: sthings-pve1
