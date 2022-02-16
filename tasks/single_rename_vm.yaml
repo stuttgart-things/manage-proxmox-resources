@@ -18,7 +18,7 @@
 
 - name: Rename VM
   ansible.builtin.uri:
-    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ item.node }}/qemu/{{ pve_vmid[0] }}/config"
+    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ pve_node }}/qemu/{{ pve_vmid[0] }}/config"
     method: POST
     body_format: form-urlencoded
     body:
