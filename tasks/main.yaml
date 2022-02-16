@@ -22,4 +22,4 @@
 
 - name: Single rename template/vm
   ansible.builtin.include_tasks: single_rename_vm.yaml
-  when: pve_current_vm_name is defined and pve_expected_vm_name is defined
+  when: pve_current_vm_name is defined and pve_expected_vm_name is defined and pve_operation == "rename"
