@@ -10,7 +10,7 @@
 
 - name: Bulk delete template/vm
   ansible.builtin.include_tasks: bulk-delete-vm.yaml
-  when: pve_delete_vms is defined
+  when: pve_bulk_delete_vms is defined
   with_items:
     - "{{ pve_bulk_delete_vms }}"
 
