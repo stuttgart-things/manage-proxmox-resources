@@ -15,7 +15,7 @@
     - "{{ pve_bulk_delete_vms }}"
 
 - name: Single delete template/vm
-  ansible.builtin.include_tasks: single_rename_vm.yaml
+  ansible.builtin.include_tasks: single-delete-vm.yaml
   when: pve_delete_vm and pve_operation == "delete"
 
 - name: Bulk rename template/vm
