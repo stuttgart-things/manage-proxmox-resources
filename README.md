@@ -11,6 +11,8 @@ cat <<EOF > /tmp/requirements.yaml
 roles:
 - src: git@codehub.sva.de:Lab/stuttgart-things/supporting-roles/manage-proxmox-resources.git
   scm: git
+- src: git@codehub.sva.de:Lab/stuttgart-things/supporting-roles/create-send-webhook.git
+  scm: git
 
 EOF
 ansible-galaxy install -r /tmp/requirements.yaml --force && ansible-galaxy collection install -r /tmp/requirements.yaml -f

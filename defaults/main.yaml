@@ -1,2 +1,6 @@
 ---
 pve_operation: nothing
+
+act_image: "https://cdn.icon-icons.com/icons2/2389/PNG/512/proxmox_logo_icon_144960.png"
+quote_message: "{% if operation == 'delete' %}{{ farewell|random }}{% elif operation == 'move' %}{{ move_messages|random }}{% elif operation == 'rename' %}{{ rename_messages|random }}{% endif %}"  
+folder_text: "{% if new_vm_folder is defined and operation == 'move' %} ({{ vm_folder }} was {{ operation }}d to {{ new_vm_folder }}) {% elif operation == 'delete' %} ({{ vm_folder }}) was {{ operation }}d {% elif operation == 'rename' %} ({{ vm_folder }}) was {{ operation }}d to {{ new_vm_name }} {% endif %}"
