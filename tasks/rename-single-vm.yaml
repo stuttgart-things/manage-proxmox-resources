@@ -29,5 +29,5 @@
       CSRFPreventionToken: "{{ pve_api_ticket.json.data.CSRFPreventionToken }}"
 
 - name: Set webhook message
-  ansible.set_fact:
+  ansible.builtin.set_fact:
     webhook_message: "vm {{ pve_current_vm_name }} renamed to {{ pve_expected_vm_name }} on {{ pve_node }}"
