@@ -2,7 +2,7 @@
 - name: Get proxmox qemu vm list
   ansible.builtin.uri:
     validate_certs: no
-    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ item.node }}/qemu"
+    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ pve_node }}/qemu"
     method: GET
     status_code: 200
     headers:
@@ -14,16 +14,20 @@
   ansible.builtin.set_fact:
     pve_vmid: "{{ pve_api_qemu_return.json | json_query(jmesquery) }}"
   vars:
-    jmesquery: "data[?(@.name=='{{ item.current_vm_name }}')].vmid"
+    jmesquery: "data[?(@.name=='{{ pve_current_vm_name }}')].vmid"
 
 - name: Rename VM
   ansible.builtin.uri:
-    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ item.node }}/qemu/{{ pve_vmid[0] }}/config"
+    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ pve_node }}/qemu/{{ pve_vmid[0] }}/config"
     method: POST
     body_format: form-urlencoded
     body:
-      name: "{{ item.expected_vm_name }}"
+      name: "{{ pve_expected_vm_name }}"
     status_code: [200,500]
     headers:
       Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
       CSRFPreventionToken: "{{ pve_api_ticket.json.data.CSRFPreventionToken }}"
+
+- name: Set webhook message
+  ansible.set_fact:
+    webhook_message: "vm {{ pve_current_vm_name }} renamed to {{ pve_expected_vm_name }} on {{ pve_node }}"

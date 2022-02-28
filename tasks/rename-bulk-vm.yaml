@@ -2,7 +2,7 @@
 - name: Get proxmox qemu vm list
   ansible.builtin.uri:
     validate_certs: no
-    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ pve_node }}/qemu"
+    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ item.node }}/qemu"
     method: GET
     status_code: 200
     headers:
@@ -14,15 +14,16 @@
   ansible.builtin.set_fact:
     pve_vmid: "{{ pve_api_qemu_return.json | json_query(jmesquery) }}"
   vars:
-    jmesquery: "data[?(@.name=='{{ pve_delete_vm }}')].vmid"
+    jmesquery: "data[?(@.name=='{{ item.current_vm_name }}')].vmid"
 
-- name: Delete vm or template (if exists)
+- name: Rename VM
   ansible.builtin.uri:
-    validate_certs: no
-    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ pve_node }}/qemu/{{ pve_vmid[0] }}"
-    method: DELETE
+    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ item.node }}/qemu/{{ pve_vmid[0] }}/config"
+    method: POST
+    body_format: form-urlencoded
+    body:
+      name: "{{ item.expected_vm_name }}"
     status_code: [200,500]
     headers:
       Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
       CSRFPreventionToken: "{{ pve_api_ticket.json.data.CSRFPreventionToken }}"
-  when: pve_vmid | length > 0
