@@ -1,14 +1,14 @@
 ---
-- name: Send webhook for vm {{ operation }}
+- name: Send webhook
   ansible.builtin.include_role:
     name: create-send-webhook
   vars:
-    summary_text: "vm {{ pve_delete_vm | default(omit) }} {{ pve_current_vm_name | default(omit) }} on {{ pve_node }}"
+    summary_text: "{{ webhook_message }}" 
     msteams_url: "{{ msteams_webhook_url }}"
-    card_title: "vm {{ pve_delete_vm | default(omit) }} {{ pve_current_vm_name | default(omit) }} on {{ pve_node }}"
+    card_title: "{{ webhook_message }}"
     act_image: "{{ logo_pic }}"
     act_title: "{{ quote_message }}"
-    act_text: "hostname: {{ vm_name }}"
+    act_text: "{{ webhook_message }}" 
     ms_teams_notification_type: simple
   tags: notify
   ignore_errors: true

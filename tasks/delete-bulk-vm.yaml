@@ -26,3 +26,8 @@
       Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
       CSRFPreventionToken: "{{ pve_api_ticket.json.data.CSRFPreventionToken }}"
   when: pve_vmid | length > 0
+
+- name: Set webhook message
+  ansible.builtin.set_fact:
+    webhook_message: |
+      vm {{ item.name }} deleted on {{ pve_node }}
