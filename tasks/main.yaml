@@ -1,6 +1,14 @@
 ---
 - name: Get proxmox ticket for authentication
-  ansible.builtin.include_tasks: ticket.yaml
+  ansible.builtin.uri:
+    url: "{{ pve_cluster_url }}/api2/json/access/ticket"
+    method: POST
+    body_format: form-urlencoded
+    body:
+      username: "{{ pve_api_user }}"
+      password: "{{ pve_api_password }}"
+    status_code: 200
+  register: pve_api_ticket
 
 - name: Create VM pool/folder
   ansible.builtin.include_tasks: create-pool.yaml
@@ -13,23 +21,6 @@
   with_items:
     - "{{ pve_bulk_delete_vms | default([]) }}"
     - "{{ pve_bulk_rename_vms | default([]) }}"
-
-
-
-
-#- name: Single delete template/vm
-#  ansible.builtin.include_tasks: single-delete-vm.yaml
-#  when: pve_delete_vm is defined and pve_operation == "delete"
-
-#- name: Bulk rename template/vm
-#  ansible.builtin.include_tasks: rename-bulk-vm.yaml
-#  when: pve_bulk_rename_vms is defined
-#  with_items:
-#    - "{{ pve_bulk_rename_vms }}"
-
-#- name: Single rename template/vm
-#  ansible.builtin.include_tasks: rename-single-vm.yaml
-#  when: pve_current_vm_name is defined and pve_expected_vm_name is defined and pve_operation == "rename"
 
 - name: Send webhook
   include: send-webhook.yaml

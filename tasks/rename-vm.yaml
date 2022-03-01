@@ -10,3 +10,8 @@
     headers:
       Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
       CSRFPreventionToken: "{{ pve_api_ticket.json.data.CSRFPreventionToken }}"
+
+- name: Set webhook message
+  ansible.builtin.set_fact:
+    webhook_message: |
+      vm {{ item.name }} was renamed to {{ item.expected_vm_name }} on {{ item.node }}
