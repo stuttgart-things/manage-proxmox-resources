@@ -30,4 +30,4 @@
 
 - name: Send webhook
   include: send-webhook.yaml
-  when: webhook_message is defined and send_webhook|bool
+  when: send_webhook|bool
