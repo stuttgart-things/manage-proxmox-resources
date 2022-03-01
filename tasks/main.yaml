@@ -8,25 +8,25 @@
   with_items:
     - "{{ pve_pools }}"
 
-- name: Bulk delete template/vm
+- name: Delete template/vm
   ansible.builtin.include_tasks: delete-bulk-vm.yaml
   when: pve_bulk_delete_vms is defined
   with_items:
     - "{{ pve_bulk_delete_vms }}"
 
-- name: Single delete template/vm
-  ansible.builtin.include_tasks: single-delete-vm.yaml
-  when: pve_delete_vm is defined and pve_operation == "delete"
+#- name: Single delete template/vm
+#  ansible.builtin.include_tasks: single-delete-vm.yaml
+#  when: pve_delete_vm is defined and pve_operation == "delete"
 
-- name: Bulk rename template/vm
-  ansible.builtin.include_tasks: rename-bulk-vm.yaml
-  when: pve_bulk_rename_vms is defined
-  with_items:
-    - "{{ pve_bulk_rename_vms }}"
+#- name: Bulk rename template/vm
+#  ansible.builtin.include_tasks: rename-bulk-vm.yaml
+#  when: pve_bulk_rename_vms is defined
+#  with_items:
+#    - "{{ pve_bulk_rename_vms }}"
 
-- name: Single rename template/vm
-  ansible.builtin.include_tasks: rename-single-vm.yaml
-  when: pve_current_vm_name is defined and pve_expected_vm_name is defined and pve_operation == "rename"
+#- name: Single rename template/vm
+#  ansible.builtin.include_tasks: rename-single-vm.yaml
+#  when: pve_current_vm_name is defined and pve_expected_vm_name is defined and pve_operation == "rename"
 
 - name: Send webhook
   include: send-webhook.yaml
