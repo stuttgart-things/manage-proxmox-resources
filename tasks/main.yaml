@@ -8,11 +8,14 @@
   with_items:
     - "{{ pve_pools }}"
 
-- name: Delete template/vm
-  ansible.builtin.include_tasks: delete-vm.yaml
-  when: pve_bulk_delete_vms is defined
+- name: Execute vm operation
+  ansible.builtin.include_tasks: execute-vm-operation.yaml
   with_items:
-    - "{{ pve_bulk_delete_vms }}"
+    - "{{ pve_bulk_delete_vms | default([]) }}"
+    - "{{ pve_bulk_rename_vms | default([]) }}"
+
+
+
 
 #- name: Single delete template/vm
 #  ansible.builtin.include_tasks: single-delete-vm.yaml

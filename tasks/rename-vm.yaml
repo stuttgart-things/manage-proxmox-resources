@@ -1,0 +1,12 @@
+---
+- name: Rename VM
+  ansible.builtin.uri:
+    url: "{{ pve_cluster_url }}/api2/json/nodes/{{ item.node }}/qemu/{{ pve_vmid[0] }}/config"
+    method: POST
+    body_format: form-urlencoded
+    body:
+      name: "{{ item.expected_vm_name }}"
+    status_code: [200,500]
+    headers:
+      Cookie: "PVEAuthCookie={{ pve_api_ticket.json.data.ticket }}"
+      CSRFPreventionToken: "{{ pve_api_ticket.json.data.CSRFPreventionToken }}"
