@@ -30,4 +30,4 @@
 - name: Set webhook message
   ansible.builtin.set_fact:
     webhook_message: |
-      vm {{ item.name }} deleted on {{ pve_node }}
+      vm {{ item.name }} deleted on {{ item.node }}
