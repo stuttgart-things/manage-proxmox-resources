@@ -14,4 +14,4 @@
 - name: Set webhook message
   ansible.builtin.set_fact:
     webhook_message: |
-      vm was renamed to {{ item.expected_vm_name }} on {{ item.node }}
+      vm {{ item.current_vm_name }} was renamed to {{ item.expected_vm_name }} on {{ item.node }}
