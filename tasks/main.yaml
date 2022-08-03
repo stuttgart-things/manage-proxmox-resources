@@ -23,5 +23,5 @@
     - "{{ pve_bulk_rename_vms | default([]) }}"
 
 - name: Send webhook
-  ansible.builtin.include_role: send-webhook.yaml
+  ansible.builtin.include_tasks: send-webhook.yaml
   when: send_webhook|bool
