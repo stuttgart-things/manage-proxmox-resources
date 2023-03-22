@@ -1,7 +1,7 @@
 ---
 - name: Get proxmox qemu vm list
   ansible.builtin.uri:
-    validate_certs: no
+    validate_certs: false
     url: "{{ pve_cluster_url }}/api2/json/nodes/{{ item.node }}/qemu"
     method: GET
     status_code: 200
