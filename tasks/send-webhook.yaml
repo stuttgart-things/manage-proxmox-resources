@@ -3,12 +3,12 @@
   ansible.builtin.include_role:
     name: create-send-webhook
   vars:
-    summary_text: "{{ webhook_message }}" 
+    summary_text: "{{ webhook_message }}"
     msteams_url: "{{ msteams_webhook_url }}"
     card_title: "{{ webhook_message }}"
     act_image: "{{ logo_pic }}"
     act_title: "{{ quote_message }}"
-    act_text: "{{ webhook_message }}" 
+    act_text: "{{ webhook_message }}"
     ms_teams_notification_type: simple
   tags: notify
   ignore_errors: true

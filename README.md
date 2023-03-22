@@ -19,8 +19,6 @@ ansible-galaxy install -r /tmp/requirements.yaml --force && ansible-galaxy colle
 ```
 </details>
 
-For more information about stuttgart-things role installation visit: [Stuttgart-Things howto install role](https://codehub.sva.de/Lab/stuttgart-things/meta/documentation/doc-as-code/-/blob/master/howtos/howto-install-role.md)
-
 ## Example playbooks to use this role
 
 <details><summary>Create VM pool (folder) (click here)</summary>
@@ -160,4 +158,4 @@ BSD
 Author Information
 ------------------
 
-Marcel Zapf; 02/2022; SVA GmbH
+Marcel Zapf; 02/2022; Stuttgart-Things
