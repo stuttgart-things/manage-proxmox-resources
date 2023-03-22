@@ -9,9 +9,9 @@ This Ansible role manage proxmox resources. This role is based on api calls, no 
 ```
 cat <<EOF > /tmp/requirements.yaml
 roles:
-- src: git@codehub.sva.de:Lab/stuttgart-things/supporting-roles/manage-proxmox-resources.git
+- src: https://github.com/stuttgart-things/manage-proxmox-resources.git
   scm: git
-- src: git@codehub.sva.de:Lab/stuttgart-things/supporting-roles/create-send-webhook.git
+- src: https://github.com/stuttgart-things/create-send-webhook.git
   scm: git
 
 EOF
