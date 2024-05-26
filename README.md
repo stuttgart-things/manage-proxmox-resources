@@ -1,7 +1,7 @@
 stuttgart-things/manage-proxmox-resources
 =========================================
 
-This Ansible role manage proxmox resources. This role is based on api calls, no other binary is requiered by this role. 
+manage proxmox resources based on api calls (no binary is requiered by this role). 
 
 ### Role installation:
 <details><summary><b>Install this role on your ansible host (click here)</b></summary>
