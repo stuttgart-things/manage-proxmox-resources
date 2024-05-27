@@ -3,7 +3,7 @@
   vars:
     pve_cluster_url: "https://sthings-pve1.labul.sva.de:8006"
     pve_api_user:  "terraform@pve"
-    pve_api_password: "Atlan7is"
+    pve_api_password: "secret"
     pve_node: sthings-pve1
 
 #    pve_bulk_delete_vms:
