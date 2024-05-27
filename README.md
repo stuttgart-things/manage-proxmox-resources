@@ -65,7 +65,7 @@ cat <<EOF > /tmp/manage-proxmox-resources.yml
     pve_api_user:  "terraform@pve"
     pve_api_password: "secret"
 
-    pve_delete_vms:
+    pve_bulk_delete_vms:
       - name: badvm1
         node: sthings-pve1
       - name: badvm2
@@ -131,9 +131,10 @@ cat <<EOF > /tmp/manage-proxmox-resources.yml
     pve_api_password: "secret"
     pve_node: sthings-pve1
 
-    pve_current_vm_name: vm1
-    pve_expected_vm_name: myvm
-
+    pve_bulk_rename_vms:
+      - current_vm_name: vm1
+        expected_vm_name: myvm
+        node: sthings-pve1
 
   roles:
     - manage-proxmox-resources
