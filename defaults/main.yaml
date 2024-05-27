@@ -1,5 +1,5 @@
 ---
 pve_operation: ""
 act_image: "https://cdn.icon-icons.com/icons2/2389/PNG/512/proxmox_logo_icon_144960.png"
-quote_message: "{% if pve_bulk_delete_vms is defined %}{{ farewell|random }}{% elif pve_bulk_rename_vms is defined %}{{ rename_messages|random }}{% endif %}"
+quote_message: "{% if pve_bulk_delete_vms is defined %}{{ farewell | random }}{% elif pve_bulk_rename_vms is defined %}{{ rename_messages | random }}{% endif %}"
 send_webhook: true
