@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  vars:
+    pve_cluster_url: "https://sthings-pve1.labul.sva.de:8006"
+    pve_api_user: "terraform@pve"
+    pve_api_password: "secret"
+    pve_node: sthings-pve1
+
+#    pve_bulk_delete_vms:
+#      - name: badvm1
+#        node: sthings-pve1
+#      - name: badvm2
+#        node: sthings-pve1
+#      - name: badvm3
+#        node: sthings-pve1
+
+    pve_bulk_rename_vms:
+      - current_vm_name: vm1
+        expected_vm_name: myvm1
+        node: sthings-pve1
+      - current_vm_name: vm2
+        expected_vm_name: myvm2
+        node: sthings-pve1
+      - current_vm_name: vm3
+        expected_vm_name: myvm3
+        node: sthings-pve1
+
+  roles:
+    - manage-proxmox-resources
