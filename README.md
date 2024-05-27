@@ -143,7 +143,11 @@ EOF
 </details>
 
 ## Requirements and Dependencies:
+- Ubuntu 24.04
+- Ubuntu 22.04
 - Ubuntu 20.04
+- Ubuntu 18.04
+- Rocky 9
 - Fedora 34
 - CentOS 8
 - CentOS 7
