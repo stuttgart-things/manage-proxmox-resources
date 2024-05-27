@@ -25,7 +25,7 @@ ansible-galaxy install -r /tmp/requirements.yaml --force && ansible-galaxy colle
 
 ### Ansible command:
 ```bash
-ansible-playbook /tmp/manage-proxmox-resources.yml
+ansible-playbook /tmp/manage-proxmox-resources.yaml
 ```
 
 ### Playbook: playbook.yml
@@ -52,12 +52,12 @@ EOF
 
 ### Ansible command:
 ```bash
-ansible-playbook /tmp/manage-proxmox-resources.yml
+ansible-playbook /tmp/manage-proxmox-resources.yaml
 ```
 
 ### Playbook: playbook.yml
 ```yaml
-cat <<EOF > /tmp/manage-proxmox-resources.yml
+cat <<EOF > /tmp/manage-proxmox-resources.yaml
 ---
 - hosts: localhost
   vars:
@@ -83,12 +83,12 @@ EOF
 
 ### Ansible command:
 ```bash
-ansible-playbook manage-proxmox-resources.yml
+ansible-playbook manage-proxmox-resources.yaml
 ```
 
 ### Playbook: playbook.yml
 ```yaml
-cat <<EOF > /tmp/manage-proxmox-resources.yml
+cat <<EOF > /tmp/manage-proxmox-resources.yaml
 ---
 - hosts: localhost
   vars:
@@ -117,12 +117,12 @@ EOF
 
 ### Ansible command:
 ```bash
-ansible-playbook playbook.yml
+ansible-playbook playbook.yaml
 ```
 
 ### Playbook: playbook.yml
 ```yaml
-cat <<EOF > /tmp/manage-proxmox-resources.yml
+cat <<EOF > /tmp/manage-proxmox-resources.yaml
 ---
 - hosts: localhost
   vars:
