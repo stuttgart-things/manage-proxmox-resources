@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  vars:
+    pve_cluster_url: "https://sthings-pve1.labul.sva.de:8006"
+    pve_api_user:  "terraform@pve"
+    pve_api_password: "Atlan7is"
+    pve_node: sthings-pve1
+
+    pve_bulk_delete_vms:
+      - name: ubuntu22-eva
+        node: sthings-pve1
+
+    #pve_bulk_rename_vms:
+    #  - current_vm_name: ubuntu22-2024-05-22-base-os
+    #    expected_vm_name: andre-ubuntu22
+    #    node: sthings-pve1
+
+  roles:
+    - manage-proxmox-resources
