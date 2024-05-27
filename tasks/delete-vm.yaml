@@ -1,7 +1,7 @@
 ---
 - name: Delete vm or template (if exists)
   ansible.builtin.uri:
-    validate_certs: no
+    validate_certs: false
     url: "{{ pve_cluster_url }}/api2/json/nodes/{{ item.node }}/qemu/{{ pve_vmid[0] }}"
     method: DELETE
     status_code: [200,500]

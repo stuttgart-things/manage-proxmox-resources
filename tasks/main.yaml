@@ -1,6 +1,7 @@
 ---
 - name: Get proxmox ticket for authentication
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ pve_cluster_url }}/api2/json/access/ticket"
     method: POST
     body_format: form-urlencoded
