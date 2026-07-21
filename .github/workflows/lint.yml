@@ -32,6 +32,11 @@ jobs:
       runs-on: ghr-manage-proxmox-resources-labda-test
       environment-name: k8s
       continue-error: true
-      ansible-image: eu.gcr.io/stuttgart-things/sthings-ansible:9.3.0-1
+      # ghcr, not eu.gcr.io: the Google Artifact Registry copy answers
+      # "Unauthenticated request" to every pull, so the job container never
+      # starts and ansible-lint does not run — masked by continue-error above.
+      # 14.0.0 because ghcr carries no 9.x/10.x tag; it is the line the fleet
+      # runs today and it lints clean in download-install-binary.
+      ansible-image: ghcr.io/stuttgart-things/sthings-ansible:14.0.0
       playbook: tests/test.yml
     needs: yaml-lint
